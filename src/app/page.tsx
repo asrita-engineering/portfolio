@@ -83,7 +83,10 @@ export default function Home() {
               LinkedIn
             </a>
 
-            <a href="/resume.pdf" className="button">
+            <a
+              href={`${process.env.NEXT_PUBLIC_BASE_PATH}/resume.pdf`}
+              className="button"
+            >
               Resume
             </a>
           </div>

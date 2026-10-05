@@ -8,7 +8,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 - `npm install` — dependencies are locked in `package-lock.json`; `node_modules` must exist before reading the bundled Next.js docs that AGENTS.md points to (`node_modules/next/dist/docs/`).
 - `npm run dev` — dev server at http://localhost:3000 (also regenerates the AGENTS.md block).
-- `npm run build` — production build; also type-checks.
+- `npm run build` — static export to `out/` (`output: "export"`); also type-checks.
+- `npm start` — serves `out/` locally with `serve` (`next start` does not work with static export). Run `npm run build` first.
 - `npm run lint` — ESLint 9 flat config (`eslint.config.mjs`, Next core-web-vitals + TypeScript rules).
 - `npx tsc --noEmit` — standalone type check.
 
@@ -28,4 +29,5 @@ This is a single-page personal portfolio (Platform Engineering / Cloud / DevOps)
 - `src/app/globals.css` holds nearly all styling as plain CSS with design tokens on `:root` (colors, `--font-sans`/`--font-mono` from the Geist font variables, `--content-width`, `--gutter`, `--radius`). Tailwind is imported but used only for a few utility classes in `layout.tsx`.
 - Styling is class-based and built from shared pieces: `.eyebrow` (mono section label), `.prose`, `.button`/`.button-primary` inside `.button-row`, `.card` inside `.card-grid`, and `.tag` inside `.tag-list`. Reuse these for new sections instead of adding one-off rules.
 - Mobile layout is handled by a single `@media (max-width: 700px)` block near the end of `globals.css`, followed by a `prefers-reduced-motion` block.
+- Deployment: `.github/workflows/deploy.yml` builds and publishes `out/` to GitHub Pages on every push to `main` (Node version from `.nvmrc`). It passes `PAGES_BASE_PATH` (`/portfolio` on `asrita-engineering.github.io/portfolio`, empty on a custom domain), which `next.config.ts` uses as `basePath`. Because this is a static export, server-only features (route handlers using the request, redirects/rewrites/headers, server actions, default `next/image` optimization, `dynamicParams: true`) are unavailable. `next/link` adds `basePath` automatically, but plain `<a>` links to files in `public/` must prefix `process.env.NEXT_PUBLIC_BASE_PATH`.
 - `src/app/layout.tsx` loads Geist fonts via `next/font/google`; its `metadata` is still the create-next-app default.
