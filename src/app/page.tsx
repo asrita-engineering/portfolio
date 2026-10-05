@@ -1,3 +1,8 @@
+import { ProjectCard } from "@/components/project-card";
+import { SiteFooter } from "@/components/site-footer";
+import { SiteHeader } from "@/components/site-header";
+import { projects } from "@/content/projects";
+
 const profile = {
   name: "Chanda Asrita",
   github: "https://github.com/asrita-engineering",
@@ -32,259 +37,214 @@ const skillGroups = [
   },
 ];
 
-const projects = [
-  {
-    title: "Cloud Infrastructure Platform",
-    description:
-      "Infrastructure-as-Code platform for provisioning and managing cloud resources with a focus on reproducibility, security, and automation.",
-    technologies: ["GCP", "Terraform", "VPC", "IAM"],
-  },
-  {
-    title: "Kubernetes Platform",
-    description:
-      "Cloud-native platform for deploying and operating containerized applications with Kubernetes, Helm, scaling, and production-oriented workloads.",
-    technologies: ["Kubernetes", "Docker", "Helm", "GKE"],
-  },
-  {
-    title: "GitOps CI/CD Platform",
-    description:
-      "End-to-end deployment workflow using CI/CD, immutable container images, GitOps-based environment promotion, and ArgoCD.",
-    technologies: ["GitLab CI/CD", "Docker", "ArgoCD", "GitOps"],
-  },
-  {
-    title: "Observability Platform",
-    description:
-      "Monitoring and alerting stack for cloud-native applications with metrics, dashboards, alerting, and operational visibility.",
-    technologies: ["Prometheus", "Grafana", "Alertmanager", "Kubernetes"],
-  },
-];
-
 export default function Home() {
   return (
-    <main>
-      {/* Navigation */}
-      <nav className="navbar">
-        <a href="#" className="navbar-brand">
-          Asrita Engineering
-        </a>
+    <>
+      <SiteHeader />
 
-        <div className="navbar-links">
-          <a href="#about">About</a>
-          <a href="#skills">Skills</a>
-          <a href="#projects">Projects</a>
-          <a href="#experience">Experience</a>
-          <a href="#contact">Contact</a>
-        </div>
-      </nav>
+      <main>
+        {/* Hero */}
+        <section className="hero">
+          <p className="eyebrow">Platform Engineer · Cloud · DevOps</p>
 
-      {/* Hero */}
-      <section className="hero">
-        <p>PLATFORM ENGINEER • CLOUD • DEVOPS</p>
+          <h1 className="hero-name">{profile.name}</h1>
 
-        <h1>
-          {profile.name}
-        </h1>
+          <h2 className="hero-title">
+            Building reliable cloud infrastructure
+            <br />
+            and <span className="accent">developer platforms</span>.
+          </h2>
 
-        <h2 className="hero-title">
-          Building reliable cloud infrastructure
-          <br />
-          and developer platforms.
-        </h2>
+          <p className="hero-summary">
+            Platform Engineer focused on cloud infrastructure, Kubernetes,
+            infrastructure as code, CI/CD, GitOps, and observability.
+          </p>
 
-        <p>
-          Platform Engineer focused on cloud infrastructure, Kubernetes,
-          infrastructure as code, CI/CD, GitOps, and observability.
-        </p>
+          <div className="button-row">
+            <a href="#projects" className="button button-primary">
+              View Projects
+            </a>
 
-        <div className="hero-links">
-          <a href="#projects">View Projects</a>
+            <a
+              href={profile.github}
+              className="button"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              GitHub
+            </a>
 
-          <a
-            href={profile.github}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            GitHub
-          </a>
+            <a
+              href={profile.linkedin}
+              className="button"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              LinkedIn
+            </a>
 
-          <a
-            href={profile.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            LinkedIn
-          </a>
+            <a href="/resume.pdf" className="button">
+              Resume
+            </a>
+          </div>
+        </section>
 
-          <a href="/resume.pdf">
-            Resume
-          </a>
-        </div>
-      </section>
+        {/* About */}
+        <section id="about">
+          <p className="eyebrow">01 — About</p>
 
-      {/* About */}
-      <section id="about">
-        <p>ABOUT</p>
+          <h2>Platform engineering focused on reliability and automation.</h2>
 
-        <h2>Platform engineering focused on reliability and automation.</h2>
-
-        <p>
-          I am a Platform Engineer focused on building and operating reliable
-          cloud infrastructure and developer platforms. My work spans
-          Kubernetes, infrastructure as code, CI/CD, GitOps, observability,
-          and production systems.
-        </p>
-
-        <p>
-          I enjoy solving infrastructure problems, automating repetitive
-          workflows, improving system reliability, and building platforms
-          that make software delivery faster and more predictable.
-        </p>
-      </section>
-
-      {/* Skills */}
-      <section id="skills">
-        <p>TECHNOLOGIES</p>
-
-        <h2>Tools and technologies I work with.</h2>
-
-        <div className="skill-groups">
-          {skillGroups.map((group) => (
-            <div className="skill-group" key={group.category}>
-              <h3>{group.category}</h3>
-
-              <div>
-                {group.technologies.map((technology) => (
-                  <span key={technology}>{technology}</span>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Projects */}
-      <section id="projects">
-        <p>SELECTED WORK</p>
-
-        <h2>Engineering projects</h2>
-
-        <div>
-          {projects.map((project, index) => (
-            <article className="project-card" key={project.title}>
-              <div className="project-number">
-                0{index + 1}
-              </div>
-
-              <h3>{project.title}</h3>
-
-              <p>{project.description}</p>
-
-              <div>
-                {project.technologies.map((technology) => (
-                  <span key={technology}>{technology}</span>
-                ))}
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      {/* Experience */}
-      <section id="experience">
-        <p>EXPERIENCE</p>
-
-        <h2>My engineering journey.</h2>
-
-        <div className="experience-list">
-          <article>
-            <div className="experience-header">
-              <div>
-                <h3>Platform Engineer</h3>
-                <p className="company">ZoloStays</p>
-              </div>
-
-              <span>2024 — 2026</span>
-            </div>
-
+          <div className="prose">
             <p>
-              Worked on cloud infrastructure, Kubernetes workloads, CI/CD
-              automation, GitOps deployments, observability, database
-              infrastructure, and production troubleshooting.
+              I am a Platform Engineer focused on building and operating
+              reliable cloud infrastructure and developer platforms. My work
+              spans Kubernetes, infrastructure as code, CI/CD, GitOps,
+              observability, and production systems.
             </p>
 
-            <div>
-              <span>GCP</span>
-              <span>Kubernetes</span>
-              <span>Terraform</span>
-              <span>GitLab CI/CD</span>
-              <span>ArgoCD</span>
-              <span>Prometheus</span>
-              <span>Grafana</span>
-            </div>
-          </article>
+            <p>
+              I enjoy solving infrastructure problems, automating repetitive
+              workflows, improving system reliability, and building platforms
+              that make software delivery faster and more predictable.
+            </p>
+          </div>
+        </section>
 
-          <article>
-            <div className="experience-header">
-              <div>
-                <h3>Platform Engineer</h3>
-                <p className="company">Quantiphi</p>
+        {/* Skills */}
+        <section id="skills">
+          <p className="eyebrow">02 — Technologies</p>
+
+          <h2>Tools and technologies I work with.</h2>
+
+          <div className="card-grid">
+            {skillGroups.map((group) => (
+              <div className="card skill-group" key={group.category}>
+                <h3>{group.category}</h3>
+
+                <div className="tag-list">
+                  {group.technologies.map((technology) => (
+                    <span className="tag" key={technology}>
+                      {technology}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Projects */}
+        <section id="projects">
+          <p className="eyebrow">03 — Selected Work</p>
+
+          <h2>Engineering projects</h2>
+
+          <div className="card-grid project-grid">
+            {projects.map((project, index) => (
+              <ProjectCard key={project.slug} project={project} index={index} />
+            ))}
+          </div>
+        </section>
+
+        {/* Experience */}
+        <section id="experience">
+          <p className="eyebrow">04 — Experience</p>
+
+          <h2>My engineering journey.</h2>
+
+          <ol className="timeline">
+            <li className="timeline-item timeline-item-current">
+              <div className="experience-header">
+                <div>
+                  <h3>Platform Engineer</h3>
+                  <p className="company">Quantiphi</p>
+                </div>
+
+                <span className="experience-dates">2026 — Present</span>
               </div>
 
-              <span>2026 — Present</span>
-            </div>
+              <p>
+                Working on cloud and platform engineering initiatives focused
+                on infrastructure, automation, deployment, and reliability.
+              </p>
 
+              <div className="tag-list">
+                <span className="tag">GCP</span>
+                <span className="tag">Cloud</span>
+                <span className="tag">Platform Engineering</span>
+              </div>
+            </li>
+
+            <li className="timeline-item">
+              <div className="experience-header">
+                <div>
+                  <h3>Platform Engineer</h3>
+                  <p className="company">ZoloStays</p>
+                </div>
+
+                <span className="experience-dates">2024 — 2026</span>
+              </div>
+
+              <p>
+                Worked on cloud infrastructure, Kubernetes workloads, CI/CD
+                automation, GitOps deployments, observability, database
+                infrastructure, and production troubleshooting.
+              </p>
+
+              <div className="tag-list">
+                <span className="tag">GCP</span>
+                <span className="tag">Kubernetes</span>
+                <span className="tag">Terraform</span>
+                <span className="tag">GitLab CI/CD</span>
+                <span className="tag">ArgoCD</span>
+                <span className="tag">Prometheus</span>
+                <span className="tag">Grafana</span>
+              </div>
+            </li>
+          </ol>
+        </section>
+
+        {/* Contact */}
+        <section id="contact" className="contact">
+          <p className="eyebrow">05 — Contact</p>
+
+          <h2>Let&apos;s build something reliable.</h2>
+
+          <div className="prose">
             <p>
-              Working on cloud and platform engineering initiatives focused on
-              infrastructure, automation, deployment, and reliability.
+              Interested in platform engineering, cloud infrastructure, or
+              DevOps? Let&apos;s connect.
             </p>
+          </div>
 
-            <div>
-              <span>GCP</span>
-              <span>Cloud</span>
-              <span>Platform Engineering</span>
-            </div>
-          </article>
-        </div>
-      </section>
+          <div className="button-row">
+            <a href={`mailto:${profile.email}`} className="button button-primary">
+              Email
+            </a>
 
-      {/* Contact */}
-      <section id="contact">
-        <p>CONTACT</p>
+            <a
+              href={profile.linkedin}
+              className="button"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              LinkedIn
+            </a>
 
-        <h2>Let's build something reliable.</h2>
+            <a
+              href={profile.github}
+              className="button"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              GitHub
+            </a>
+          </div>
+        </section>
+      </main>
 
-        <p>
-          Interested in platform engineering, cloud infrastructure, or
-          DevOps? Let's connect.
-        </p>
-
-        <div className="contact-links">
-          <a href={`mailto:${profile.email}`}>
-            Email
-          </a>
-
-          <a
-            href={profile.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            LinkedIn
-          </a>
-
-          <a
-            href={profile.github}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            GitHub
-          </a>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer>
-        <p>© {new Date().getFullYear()} Asrita Engineering</p>
-      </footer>
-    </main>
+      <SiteFooter />
+    </>
   );
 }
